@@ -612,7 +612,12 @@ Ext.onReady(function(){
 						iconCls: "search-icon",
 						id: "searchpanel",
 						collapsed: false,
-						collapsible: false
+						collapsible: false,
+						listeners: {
+							"expand": function() {
+								Ext.getCmp("searchfield").focus(true);	
+							}
+						}
 					},
 					{
 						xtype: "panel",
@@ -675,6 +680,17 @@ Ext.onReady(function(){
 			}
 		]
 	});	
+	new Ext.KeyMap(Ext.get(document), {
+		key:	'S',
+		ctrl:	true,
+		handler:ShowSearch,
+		stopEvent:true
+	});
+	
+	function ShowSearch() {
+		Ext.getCmp("searchpanel").expand();
+		Ext.getCmp("searchfield").focus(true);
+	}
 	/***********************************************************************************
 		END: Viewport
 	***********************************************************************************/			
@@ -822,9 +838,9 @@ DBMgr.prototype = {
 		var db = this;
 		hasbookmarks 	= typeof storage.bookmarks!="undefined" ? true : false;
 		hasnotes	 	= typeof storage.notes!="undefined" ? true : false;
-		hasautoload	 	= typeof storage.autoload!="undefined" ? storage.autoload : true;
-		hasautosearch	= typeof storage.autosearch!="undefined" ? storage.autosearch : false;
-		hassingleexpand	= typeof storage.singleexpand !="undefined" ? storage.singleexpand : true;
+		hasautoload	 	= typeof storage.autoload!="undefined" ? true : false;
+		hasautosearch	= typeof storage.autosearch!="undefined" ? true : false;
+		hassingleexpand	= typeof storage.singleexpand !="undefined" ? true : false;
 		if(hasbookmarks) {
 			var b = Ext.decode(storage.bookmarks).bookmarks;
 			for(var i=0;i<b.length;i++) {
@@ -1550,7 +1566,7 @@ var so = {autoload:true,singleexpand:true,autosearch:false};
 var storage = localStorage;
 var sstorage= sessionStorage;
 
-var haswebsql = typeof openDatabase == "function" && Ext.isChrome ? true : false;
+var haswebsql = typeof openDatabase == "function" ? true : false;
 //haswebsql = false;
 /***********************************************************************************
 	END: Global Config
