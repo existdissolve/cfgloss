@@ -5,6 +5,13 @@
 		<title>gloss :: A ColdFusion 9 Reference</title>
 		<meta name="description" content="Gloss is a better way to browse the ColdFusion 9 reference.  You get the same great content, but can customize your experience with page bookmarking, in-line comments, and personal notes. Plus, you can use the search feature to find what you're looking for quickly...without wading through Adobe's entire knowledge-base.">
 		<script type="text/javascript" src="http://extjs.cachefly.net/ext-3.3.1/adapter/ext/ext-base.js"></script> 
+                <script type='text/javascript'>
+			// hack hack hackity hack
+			if (Ext.isIE6 && /msie 9/.test(navigator.userAgent.toLowerCase())) {
+				Ext.isIE6 = Ext.isIE = false;
+				Ext.isChrome = Ext.isIE9 = true;
+			}
+		</script>
 		<script type="text/javascript" src="http://extjs.cachefly.net/ext-3.3.1/ext-all.js"></script> 
 		<link href="http://extjs.cachefly.net/ext-3.3.1/resources/css/ext-all.css" type="text/css" rel="stylesheet" />
 		<link href="http://extjs.cachefly.net/ext-3.3.1/resources/css/xtheme-gray.css" type="text/css" rel="stylesheet" />
