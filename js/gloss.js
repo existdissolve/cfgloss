@@ -3,7 +3,7 @@
 ***********************************************************************************/
 Ext.onReady(function(){
 	var thewrapper = Ext.get("wrapper");
-	if(Ext.isIE==true || !storage) {
+	if((Ext.isIE==true && !Ext.isIE9) || !storage) {
 		Ext.getBody().mask('',"maskmsg");
 		Ext.get("iemessage").fadeIn({endOpacity:1,easing:'easeOut',duration:.5});
 		return false;
