@@ -1566,7 +1566,7 @@ var so = {autoload:true,singleexpand:true,autosearch:false};
 var storage = localStorage;
 var sstorage= sessionStorage;
 
-var haswebsql = typeof openDatabase == "function" ? true : false;
+var haswebsql = typeof openDatabase == "function" && Ext.isChrome ? true : false;
 //haswebsql = false;
 /***********************************************************************************
 	END: Global Config
